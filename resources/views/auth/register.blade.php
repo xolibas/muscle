@@ -61,6 +61,21 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+                           <?php use App\User;$genders = [
+                            User::GENDER_MAN=>'Man',
+                            User::GENDER_WOMAN=>'Woman',
+                            ]; ?>
+                            <div class="col-md-6">
+                                <select id="gender" type="email" class="form-control" name="gender">
+                                    @foreach($genders as $value => $label)
+                                        <option value="{{$value}}"{{$value===old('status')?' selected' : ''}}>{{$label}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

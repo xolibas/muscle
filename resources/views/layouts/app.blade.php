@@ -61,7 +61,7 @@
                                     {{ __('Logout') }}
                                 </a>
                                 <a class="dropdown-item" href="home">Home</a>
-                                <a class="dropdown-item" href="{{route('admin.home')}}">Admin</a>
+                                @can('admin-panel')<a class="dropdown-item" href="{{route('admin.home')}}">Admin</a>@endcan
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>

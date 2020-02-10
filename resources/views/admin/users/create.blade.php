@@ -32,7 +32,22 @@
                 <span class="invalid-feedback"><strong>{{$errors->first('password')}}</strong></span>
             @endif
         </div>
-
+        <div class="form-group">
+            <label for="gender" class="col-form-label">Gender</label>
+            <select id="gender" type="email" class="form-control" name="gender">
+                @foreach($genders as $value => $label)
+                    <option value="{{$value}}"{{$value===old('status')?' selected' : ''}}>{{$label}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="role" class="col-form-label">Role</label>
+            <select id="role" type="email" class="form-control" name="role">
+                @foreach($roles as $value => $label)
+                    <option value="{{$value}}"{{$value===old('role')?' selected' : ''}}>{{$label}}</option>
+                @endforeach
+            </select>
+        </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Save</button>
         </div>

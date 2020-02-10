@@ -21,17 +21,31 @@
         <tr>
             <th>Email</th><td>{{$user->email}}</td>
         </tr>
-       <?php /* <tr>
-            <th>Status</th>
+       <tr>
+            <th>Gender</th>
             <td>
-                @if($user->status===\App\User::STATUS_WAIT)
-                    <span class="badge badge-secondary">Waiting</span>
+                @if($user->gender===\App\User::GENDER_WOMAN)
+                    <span class="badge badge-primary">Woman</span>
                 @endif
-                @if($user->status===\App\User::STATUS_ACTIVE)
-                    <span class="badge badge-primary">Active</span>
+                @if($user->gender===\App\User::GENDER_MAN)
+                    <span class="badge badge-primary">Man</span>
                 @endif
             </td>
-        </tr> */ ?>
+        </tr>
+        <tr>
+            <th>Role</th>
+            <td>
+                @if($user->role===\App\User::ROLE_USER)
+                    <span class="badge badge-secondary">User</span>
+                @endif
+                @if($user->role===\App\User::ROLE_ADMIN)
+                    <span class="badge badge-primary">Admin</span>
+                @endif
+                @if($user->role === \App\User::ROLE_TRAINER)
+                    <span class="badge badge-dark">Trainer</span>
+                @endif
+            </td>
+        </tr>
         </tbody>
     </table>
 @endsection

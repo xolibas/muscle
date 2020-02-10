@@ -24,17 +24,29 @@
             @endif
         </div>
 
-      <?php /*  <div class="form-group">
-            <label for="status" class="col-form-label">E-Mail Address</label>
-            <select id="status" type="email" class="form-control{{$errors->has('status')?'is-invalid':''}}" name="status">
-                @foreach($statuses as $value => $label)
-                    <option value="{{$value}}"{{$value===old('status',$user ?? ''->status)?' selected' : ''}}>{{$label}}</option>
+      <div class="form-group">
+            <label for="gender" class="col-form-label">Gender</label>
+            <select id="gender" class="form-control{{$errors->has('gender')?'is-invalid':''}}" name="gender">
+                @foreach($genders as $value => $label)
+                    <option value="{{$value}}"{{$value===old('status',$user->gender)?' selected' : ''}}>{{$label}}</option>
                 @endforeach
             </select>
-            @if ($errors->has('status'))
-                <span class="invalid-feedback"><strong>{{$errors->first('status')}}</strong></span>
+            @if ($errors->has('gender'))
+                <span class="invalid-feedback"><strong>{{$errors->first('gender')}}</strong></span>
             @endif
-        </div> */ ?>
+        </div>
+
+        <div class="form-group">
+            <label for="role" class="col-form-label">Role</label>
+            <select id="role" class="form-control{{$errors->has('role')?'is-invalid':''}}" name="role">
+                @foreach($roles as $value => $label)
+                    <option value="{{$value}}"{{$value===old('role',$user->role)?' selected' : ''}}>{{$label}}</option>
+                @endforeach
+            </select>
+            @if ($errors->has('role'))
+                <span class="invalid-feedback"><strong>{{$errors->first('role')}}</strong></span>
+            @endif
+        </div>
 
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Save</button>

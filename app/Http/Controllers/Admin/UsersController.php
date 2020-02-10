@@ -5,19 +5,59 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
 
-    public function index()
+    public function __construct()
     {
-        $users = User::orderBy('id','desc')->paginate(20);
-        return view('admin.users.index',compact('users'));
+        $this->middleware('can:user-manage');
+    }
+    public function index(Request $request)
+    {
+        $query = User::orderByDesc('id');
+
+        if(!empty($value = $request->get('id'))){
+            $query->where('id',$value);
+        }
+        if(!empty($value = $request->get('name'))){
+            $query->where('name','like','%'.$value.'%');
+        }
+        if(!empty($value = $request->get('email'))){
+            $query->where('email','like','%'.$value.'%');
+        }
+        if(!empty($value = $request->get('gender'))){
+            $query->where('gender',$value);
+        }
+        if(!empty($value = $request->get('role'))){
+            $query->where('role',$value);
+        }
+        $genders = [
+            User::GENDER_MAN=>'Man',
+            User::GENDER_WOMAN=>'Woman',
+        ];
+        $roles = [
+            User::ROLE_TRAINER=>'Trainer',
+            User::ROLE_USER=>'User',
+            User::ROLE_ADMIN=>'Admin',
+        ];
+        $users = $query->paginate(20);
+        return view('admin.users.index',compact('users','genders','roles'));
     }
 
     public function create()
     {
-        return view('admin.users.create');
+        $genders = [
+            User::GENDER_MAN=>'Man',
+            User::GENDER_WOMAN=>'Woman',
+        ];
+        $roles = [
+            User::ROLE_TRAINER=>'Trainer',
+            User::ROLE_USER=>'User',
+            User::ROLE_ADMIN=>'Admin',
+        ];
+        return view('admin.users.create',compact('genders','roles'));
     }
 
     public function store(Request $request)
@@ -30,7 +70,8 @@ class UsersController extends Controller
            'name'=>$request['name'],
             'email'=>$request['email'],
             'password'=>$request['password'],
-          //  'status'=>User::STATUS_ACTIVE,
+            'gender'=>$request['gender'],
+            'role'=>$request['role'],
         ]);
         return redirect()->route('admin.users.show',$user);
     }
@@ -42,11 +83,16 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
-       /* $statuses = [
-            User::STATUS_WAIT=>'Waiting',
-            User::STATUS_ACTIVE=>'Active',
-        ];*/
-        return view('admin.users.edit',compact('user'));
+       $genders = [
+            User::GENDER_MAN=>'Man',
+            User::GENDER_WOMAN=>'Woman',
+        ];
+       $roles = [
+           User::ROLE_TRAINER=>'Trainer',
+           User::ROLE_USER=>'User',
+           User::ROLE_ADMIN=>'Admin',
+       ];
+        return view('admin.users.edit',compact('user','genders','roles'));
     }
 
     public function update(Request $request, User $user)
@@ -54,7 +100,8 @@ class UsersController extends Controller
         $data = $this->validate($request,[
             'name'=>'required|string|max:255',
             'email'=>'required|string|email|max:255|unique:users,id,' . $user->id,
-            //'status'=>['required','string',Rule::in([User::STATUS_WAIT,User::STATUS_ACTIVE])],
+            'gender'=>['required','string',Rule::in([User::GENDER_MAN,User::GENDER_WOMAN])],
+            'role'=>['required','string',Rule::in([User::ROLE_ADMIN,User::ROLE_USER,User::ROLE_TRAINER])],
         ]);
         $user->update($data);
         return redirect()->route('admin.users.show',$user);
