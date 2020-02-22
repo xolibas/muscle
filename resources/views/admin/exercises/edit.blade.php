@@ -26,12 +26,33 @@
 
         <div class="form-group">
             <label for="image" class="col-form-label">Image</label>
-            <input id="image" type="file" class="form-control{{$errors->has('image')?' is-invalid' : '' }}" name="image"
+            <input id="image"class="form-control{{$errors->has('image')?' is-invalid' : '' }}" name="image"
                    value="{{ old('image',$exercise->image) }}" required>
             @if ($errors->has('image'))
                 <span class="invalid-feedback"><strong>{{$errors->first('image')}}</strong></span>
             @endif
         </div>
+
+        <div class="form-group">
+            <label for="muscle" class="col-form-label">Muscle</label>
+            <select id="muscle" class="form-control{{$errors->has('muscle')?'is-invalid':''}}" name="muscle">
+                @foreach($muscles as $value => $label)
+                    <option value="{{$value}}"{{$value===old('muscle',$exercise->muscle)?' selected' : ''}}>{{$label}}</option>
+                @endforeach
+            </select>
+            @if ($errors->has('muscle'))
+                <span class="invalid-feedback"><strong>{{$errors->first('muscle')}}</strong></span>
+            @endif
+        </div>
+
+     <?php /*   <div class="form-group">
+            <label for="image" class="col-form-label">Image</label>
+            <input id="image" type="file" class="form-control{{$errors->has('image')?' is-invalid' : '' }}" multiple name="image[]"
+                   value="{{ old('image',$exercise->image) }}" required>
+            @if ($errors->has('image'))
+                <span class="invalid-feedback"><strong>{{$errors->first('image')}}</strong></span>
+            @endif
+        </div>*/ ?>
 
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Save</button>

@@ -23,6 +23,18 @@
                     </div>
                     <div class="col-sm-2">
                         <div class="form-group">
+                            <label for="muscle" class="col-form-label">Muscle</label>
+                            <select id="muscle" class="form-control" name="muscle">
+                                <option value=""></option>
+                                @foreach($muscles as $value=>$label)
+                                    <option value="{{$value}}"{{$value === request('muscle') ? ' selected'
+: ''}}>{{$label}}</option>
+                                    @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
                             <label class="col-form-label">&nbsp;</label><br />
                             <button type="submit" class="btn btn-primary">Search</button>
                         </div>
@@ -38,6 +50,7 @@
             <th>Name</th>
             <th>Text</th>
             <th>Image</th>
+            <th>Muscle</th>
         </tr>
         </thead>
         <tbody>
@@ -46,7 +59,8 @@
                 <td>{{$exercise->id}}</td>
                 <td><a href="{{route('admin.exercises.show',$exercise)}}">{{$exercise->name}}</a></td>
                 <td>{{$exercise->text}}</td>
-                <td><img src="{{$exercise->image}}"></td>
+                <td><img style="width:200px;height=200px;" src="{{$exercise->image}}"></td>
+                <td>{{$exercise->muscle}}</td>
             </tr>
         @endforeach
         </tbody>

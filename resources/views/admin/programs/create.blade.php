@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('admin.exercises._nav')
+    @include('admin.programs._nav')
 
-    <form method="POST" action="{{route('admin.exercises.store')}}">
+    <form method="POST" action="{{route('admin.programs.store')}}">
         @csrf
 
         <div class="form-group">
@@ -34,10 +34,37 @@
         </div>
 
         <div class="form-group">
-            <label for="muscle" class="col-form-label">Muscle</label>
-            <select id="muscle" class="form-control" name="muscle">
-                @foreach($muscles as $value => $label)
-                    <option value="{{$value}}"{{$value===old('muscle')?' selected' : ''}}>{{$label}}</option>
+            <label for="age" class="col-form-label">Age</label>
+            <select id="age" class="form-control" name="age">
+                @foreach($ages as $value => $label)
+                    <option value="{{$value}}"{{$value===old('age')?' selected' : ''}}>{{$label}}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="type" class="col-form-label">Type</label>
+            <select id="type" class="form-control" name="type">
+                @foreach($types as $value => $label)
+                    <option value="{{$value}}"{{$value===old('type')?' selected' : ''}}>{{$label}}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="requirement" class="col-form-label">Requirement</label>
+            <select id="requirement" class="form-control" name="requirement">
+                @foreach($requirements as $value => $label)
+                    <option value="{{$value}}"{{$value===old('requirement')?' selected' : ''}}>{{$label}}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="gender" class="col-form-label">Gender</label>
+            <select id="gender" class="form-control" name="gender">
+                @foreach($genders as $value => $label)
+                    <option value="{{$value}}"{{$value===old('gender')?' selected' : ''}}>{{$label}}</option>
                 @endforeach
             </select>
         </div>

@@ -18,9 +18,11 @@ use Illuminate\Support\Str;
 
 $factory->define(Exercise::class, function (Faker $faker) {
     $active = $faker->boolean;
+    $muscles = Exercise::MUSCLE;
     return [
         'name' => $faker->name,
         'text' => $faker->text,
         'image'=>null,
-    ];
+        //'muscle'=>$muscles[rand(0, count($muscles) - 1],
+    ];  
 });

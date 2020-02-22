@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('gender');
             $table->string('role');
             $table->timestamp('birthday')->nullable();
+            $table->bigInteger('program_id')->unsigned()->nullable();
+            $table->foreign('program_id')->references('id')->on('programs');
             $table->rememberToken();
             $table->timestamps();
         });

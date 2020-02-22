@@ -11,7 +11,7 @@ use Illuminate\Notifications\Notifiable;
     * @property string $email
     * @property datetime $email_verified_at
     * @property string $gender
-    * @property string role
+    * @property string $role
     */
 class User extends Authenticatable
 {

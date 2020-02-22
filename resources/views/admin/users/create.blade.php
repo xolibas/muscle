@@ -42,7 +42,7 @@
         </div>
         <div class="form-group">
             <label for="role" class="col-form-label">Role</label>
-            <select id="role" type="email" class="form-control" name="role">
+            <select id="role" class="form-control" name="role">
                 @foreach($roles as $value => $label)
                     <option value="{{$value}}"{{$value===old('role')?' selected' : ''}}>{{$label}}</option>
                 @endforeach
