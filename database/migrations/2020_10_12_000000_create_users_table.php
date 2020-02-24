@@ -24,6 +24,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('birthday')->nullable();
             $table->bigInteger('program_id')->unsigned()->nullable();
             $table->foreign('program_id')->references('id')->on('programs');
+            $table->bigInteger('nutrition_id')->unsigned()->nullable();
+            $table->foreign('nutrition_id')->references('id')->on('nutrition');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -27,7 +27,7 @@
                             <input id="email" class="form-control" name="email" value="{{request('email')}}">
                         </div>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-1">
                         <div class="form-group">
                             <label for="gender" class="col-form-label">Gender</label>
                             <select id="gender" class="form-control" name="gender">
@@ -39,7 +39,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-1">
                         <div class="form-group">
                             <label for="role" class="col-form-label">Role</label>
                             <select id="role" class="form-control" name="role">

@@ -17,6 +17,11 @@ Route::group(
         Route::resource('users','UsersController');
         Route::resource('exercises','ExercisesController');
         Route::resource('programs','ProgramsController');
-       // Route::post('exercises.imageLoad','ExercisesController@imageLoad')->name('exercises.imageLoad');
+        Route::resource('days','DaysController');
+        Route::resource('dayexercises','DayExercisesController');
+        Route::resource('nutritions','NutritionsController');
+        Route::resource('meals','MealController');
+        Route::resource('mealproducts','MealProductsController');
+        Route::resource('products','ProductsController');
     }
 );

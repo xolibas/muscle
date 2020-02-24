@@ -9,6 +9,7 @@ use App\Entity\Day;
 use App\Entity\Exercise;
 use App\Entity\DayExercise;
 use Illuminate\Validation\Rule;
+use DB;
 
 class ProgramsController extends Controller
 {
@@ -107,39 +108,11 @@ class ProgramsController extends Controller
         return redirect()->route('admin.programs.show',$program);
     }
 
-    public function storeDay(Request $request,Program $program)
-    {
-        $day = Day::create([
-            'program_id'=>$program->id,
-        ]);
-        return redirect()->route('admin.programs.show',$program);
-    }
-
-    public function destroyDay(Request $request,Program $program,Day $day)
-    {
-        $day->delete();
-        return redirect()->route('admin.programs.show',$program);
-    }
-
-    public function storeDayExercise(Request $request,Program $program,Exercise $exercise)
-    {
-        $dayex = DayExercise::create([
-            'exercise_id'=>$exercise->id,
-            'day_id'=>$exercise->id,
-        ]);
-        return redirect()->route('admin.programs.show',$program);
-    }
-
-    public function destroyDayExercise(Request $request,Program $program,DayExercise $dayex)
-    {
-        $dayex->delete();
-        return redirect()->route('admin.programs.show',$program);
-    }
-
     public function show(Program $program)
     {
-        $days = Day::orderByDesc('id')->where('program_id',$program->id);
-        return view('admin.programs.show',compact('program'));
+        $days = Day::where('program_id',$program->id)->get();
+        $exercises = Exercise::all();
+        return view('admin.programs.show',compact('program','days','exercises'));
     }
 
     public function edit(Program $program)

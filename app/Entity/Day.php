@@ -11,4 +11,5 @@ use Illuminate\Notifications\Notifiable;
 class Day extends Model
 {
     use Notifiable;
+    protected $fillable=['program_id'];
 }

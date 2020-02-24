@@ -15,7 +15,7 @@ class Exercise extends Model
 {
     use Notifiable;
     public $timestamps = false;
-    protected $fillable = ['name','text','image'];
+    protected $fillable = ['name','text','image','muscle'];
 
     public const MUSCLE_NECK='Neck';
     public const MUSCLE_TRAPEZE='Trapeze';
@@ -26,7 +26,7 @@ class Exercise extends Model
     public const MUSCLE_ABS='Abs';
     public const MUSCLE_QUADRICEPS='Quadriceps';
     public const MUSCLE_TRICEPS='Triceps';
-    public const MUSCLE_LATISSIMUS='LATISSIMUS';
+    public const MUSCLE_LATISSIMUS='Latissimus';
     public const MUSCLE_MIDDLE_BACK='Middle back';
     public const MUSCLE_LOWER_BACK='Lower back';
     public const MUSCLE_BUTTOCKS='Buttocks';

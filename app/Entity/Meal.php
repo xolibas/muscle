@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 /**
     * @property int $id
-    * @property int $day_id
-    * @property int @exercise_id
+    * @property int $nutrition_id
     */
-class DayExercise extends Model
+class Meal extends Model
 {
     use Notifiable;
+    protected $fillable=['nutrition_id'];
 }
