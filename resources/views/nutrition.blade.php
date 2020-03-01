@@ -3,9 +3,19 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-    <?php 
-        $Nmeal=0
-    ?>
+    <?php $Nmeal=0;?>
+    @guest
+    <h3>Login to add this program</h3>
+    @else
+    <?php $user = App\User::where('id',Auth::user()->id)->first(); ?>
+    <form method="POST" action="{{route('nutrition.add',$user)}}">
+        @csrf
+        @method('PUT')
+        <div class="form-group">
+            <button id="nutrition_id" name="nutrition_id" value="{{$nutrition->id}}" type="submit" class="btn btn-primary">Select</button>
+        </div>
+    </form>
+    @endguest
     <table class="table table-bordered table-striped">
         <tbody>
         <tr>

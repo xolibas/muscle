@@ -9,6 +9,7 @@ use App\Entity\Day;
 use App\Entity\Exercise;
 use App\Entity\Product;
 use App\Entity\Meal;
+use App\User;
 class HomeController extends Controller
 {
     /**
@@ -18,7 +19,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('guest');
     }
 
     /**
@@ -156,5 +157,23 @@ class HomeController extends Controller
         }
         $exercises = $query->paginate(20);
         return view('exercises',compact('exercises','muscles'));
+    }
+
+    public function addnut(Request $request,User $user)
+    {
+        $data = $this->validate($request,[
+            'nutrition_id'=>'required',
+        ]);
+        $user->update($data);
+        return redirect()->route('cabinet.home');
+    }
+
+    public function addprog(Request $request,User $user)
+    {
+        $data = $this->validate($request,[
+            'program_id'=>'required',
+        ]);
+        $user->update($data);
+        return redirect()->route('cabinet.home');
     }
 }

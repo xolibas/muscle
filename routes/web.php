@@ -2,17 +2,19 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-Auth::routes();
-Route::get('/cabinet/home', 'Cabinet\HomeController@index')->name('cabinet.home');
 Route::get('exercises', 'HomeController@exercises')->name('exercises');
 Route::get('programs', 'HomeController@programs')->name('programs');
 Route::get('nutritions', 'HomeController@nutritions')->name('nutritions');
 Route::get('program/{program}', 'HomeController@program')->name('program');
 Route::get('nutrition/{nutrition}', 'HomeController@nutrition')->name('nutrition');
 Route::get('exercise/{exercise}', 'HomeController@exercise')->name('exercise');
+
+Auth::routes();
+Route::get('/cabinet/home', 'Cabinet\HomeController@index')->name('cabinet.home');
 Route::get('/cabinet/edit/{user}', 'Cabinet\HomeController@edit')->name('cabinet.edit');
 Route::match(['put', 'patch'],'/cabinet/update/{user}', 'Cabinet\HomeController@update')->name('cabinet.update');
+Route::match(['put', 'patch'],'/nutrition/add/{user}', 'HomeController@addnut')->name('nutrition.add');
+Route::match(['put', 'patch'],'/program/add/{user}', 'HomeController@addprog')->name('program.add');
 Route::group(
     [
         'prefix'=>'admin',

@@ -3,14 +3,21 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-    <?php 
-        $Nday=0
-    ?>
+    <?php $Nday=0;?>
+    @guest
+    <h3>Login to add this program</h3>
+    @else
+    <?php $user = App\User::where('id',Auth::user()->id)->first(); ?>
+    <form method="POST" action="{{route('program.add',$user)}}">
+        @csrf
+        @method('PUT')
+        <div class="form-group">
+            <button id="program_id" name="program_id" value="{{$program->id}}" type="submit" class="btn btn-primary">Select</button>
+        </div>
+    </form>
+    @endguest
     <table class="table table-bordered table-striped">
         <tbody>
-        <tr>
-            <th>ID</th><td>{{$program->id}}</td>
-        </tr>
         <tr>
             <th>Name</th><td>{{$program->name}}</td>
         </tr>
