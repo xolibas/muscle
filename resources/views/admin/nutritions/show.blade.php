@@ -21,7 +21,7 @@
             <th>Name</th><td>{{$nutrition->name}}</td>
         </tr>
         <tr>
-            <th>Email</th><td>{{$nutrition->text}}</td>
+            <th>Text</th><td>{{$nutrition->text}}</td>
         </tr>
         <tr>
             <th>Image</th><td><img style="width:200px;height=200px;" src="{{$nutrition->image}}"></td>

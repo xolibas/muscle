@@ -18,7 +18,7 @@ class CreateDayExercisesTable extends Migration
             $table->bigInteger('day_id')->unsigned();
             $table->foreign('day_id')->references('id')->on('days')->onDelete('cascade');
             $table->bigInteger('exercise_id')->unsigned();
-            $table->foreign('exercise_id')->references('id')->on('exercises');
+            $table->foreign('exercise_id')->references('id')->on('exercises')->onDelete('restrict');
             $table->integer('count')->nullable();
             $table->integer('weight')->nullable();
             $table->timestamps();

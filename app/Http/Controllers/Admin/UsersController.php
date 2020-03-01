@@ -65,6 +65,8 @@ class UsersController extends Controller
         $this->validate($request,[
             'name'=>'required|string|max:255',
             'email'=>'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8',
+            'birthday'=>'nullable|date' 
         ]);
         $user = User::create([
            'name'=>$request['name'],
@@ -72,6 +74,7 @@ class UsersController extends Controller
             'password'=>$request['password'],
             'gender'=>$request['gender'],
             'role'=>$request['role'],
+            'birthday'=>$request['birthday']
         ]);
         return redirect()->route('admin.users.show',$user);
     }
@@ -102,6 +105,7 @@ class UsersController extends Controller
             'email'=>'required|string|email|max:255|unique:users,id,' . $user->id,
             'gender'=>['required','string',Rule::in([User::GENDER_MAN,User::GENDER_WOMAN])],
             'role'=>['required','string',Rule::in([User::ROLE_ADMIN,User::ROLE_USER,User::ROLE_TRAINER])],
+            'birthday'=>['nullable','date'],
         ]);
         $user->update($data);
         return redirect()->route('admin.users.show',$user);

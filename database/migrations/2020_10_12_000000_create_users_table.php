@@ -21,11 +21,11 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('gender');
             $table->string('role');
-            $table->timestamp('birthday')->nullable();
+            $table->date('birthday')->nullable();
             $table->bigInteger('program_id')->unsigned()->nullable();
-            $table->foreign('program_id')->references('id')->on('programs');
+            $table->foreign('program_id')->references('id')->on('programs')->onDelete('set null');
             $table->bigInteger('nutrition_id')->unsigned()->nullable();
-            $table->foreign('nutrition_id')->references('id')->on('nutrition');
+            $table->foreign('nutrition_id')->references('id')->on('nutrition')->onDelete('set null');
             $table->rememberToken();
             $table->timestamps();
         });

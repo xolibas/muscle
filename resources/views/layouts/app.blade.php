@@ -38,6 +38,15 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('exercises') }}">Exercises</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('programs') }}">Programs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('nutritions') }}">Nutritions</a>
+                    </li>
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
@@ -60,7 +69,7 @@
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-                                <a class="dropdown-item" href="home">Home</a>
+                                <a class="dropdown-item" href="{{ route('cabinet.home') }}">Cabinet</a>
                                 @can('admin-panel')<a class="dropdown-item" href="{{route('admin.home')}}">Admin</a>@endcan
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf

@@ -12,6 +12,7 @@ use Illuminate\Notifications\Notifiable;
     * @property datetime $email_verified_at
     * @property string $gender
     * @property string $role
+    * @property date $birthday
     */
 class User extends Authenticatable
 {
@@ -25,7 +26,7 @@ class User extends Authenticatable
     public const ROLE_TRAINER = 'Trainer';
 
     protected $fillable = [
-        'name', 'email', 'password','role','gender'
+        'name', 'email', 'password','role','gender','birthday'
     ];
     protected $hidden = [
         'password', 'remember_token',

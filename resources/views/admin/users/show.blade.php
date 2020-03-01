@@ -46,6 +46,9 @@
                 @endif
             </td>
         </tr>
+        <tr>
+            <th>Birthday</th><td>{{$user->birthday}}</td>
+        </tr>
         </tbody>
     </table>
 @endsection

@@ -18,7 +18,7 @@ class CreateMealproductsTable extends Migration
             $table->bigInteger('meal_id')->unsigned();
             $table->foreign('meal_id')->references('id')->on('meals')->onDelete('cascade');
             $table->bigInteger('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('restrict');
             $table->integer('weight');
             $table->timestamps();
         });

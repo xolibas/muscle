@@ -22,7 +22,7 @@
             <th>Name</th><td>{{$program->name}}</td>
         </tr>
         <tr>
-            <th>Email</th><td>{{$program->text}}</td>
+            <th>Text</th><td>{{$program->text}}</td>
         </tr>
         <tr>
             <th>Image</th><td><img style="width:200px;height=200px;" src="{{$program->image}}"></td>

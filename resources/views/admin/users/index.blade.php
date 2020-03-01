@@ -69,6 +69,7 @@
             <th>Email</th>
             <th>Gender</th>
             <th>Role</th>
+            <th>Birthday</th>
         </tr>
         </thead>
         <tbody>
@@ -96,6 +97,7 @@
                         <span class="badge badge-dark">Trainer</span>
                     @endif
                 </td>
+                <td>{{$user->birthday}}</td>
             </tr>
         @endforeach
         </tbody>

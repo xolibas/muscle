@@ -49,6 +49,15 @@
         </div>
 
         <div class="form-group">
+            <label for="birthday" class="col-form-label">Birthday</label>
+            <input id="birthday" type="date" class="form-control{{$errors->has('birthday')?' is-invalid' : '' }}" name="birthday"
+                   value="{{ old('birthday',$user->birthday) }}" required>
+            @if ($errors->has('birthday'))
+                <span class="invalid-feedback"><strong>{{$errors->first('birthday')}}</strong></span>
+            @endif
+        </div>
+
+        <div class="form-group">
             <button type="submit" class="btn btn-primary">Save</button>
         </div>
     </form>
